@@ -30,21 +30,33 @@ let tags = {
 }
 const defaultMenu = {
   before: `
-╭─「 %me 」
-│ Hai, %name!
-│
-│ Tersisa *%limit Limit*
-│ Role *%role*
-│ Level *%level (%exp / %maxexp)* [%xp4levelup lagi untuk levelup]
-│ %totalexp XP in Total
-│ 
-│ Tanggal: *%week %weton, %date*
-│ Tanggal Islam: *%dateIslamic*
-│ Waktu: *%time*
-│
-│ Uptime: *%uptime (%muptime)*
-│ Database: %rtotalreg of %totalreg
-╰────
+🌹 𝗛𝗘𝗟𝗟𝗢𝗪𝗢𝗥𝗟𝗗 🌹
+	
+╭━━━━━━━━━━━━━━━━━━━━┈ ❋ཻུ۪۪⸙
+│ Hai Kack %name Selamat beraktifitas!
+└┬────────────────┈ ⳹
+┌┤      「 USER 」
+││◦➛ Nama : %name
+││◦➛ Exp : (%exp / %maxexp) [%xp4levelup]
+├│◦➛ %totalexp XP 
+││◦➛ Limit : %limit Limit
+││◦➛ Level : %level
+││◦➛ Rank : %role
+││◦➛ Database : %rtotalreg dari %totalreg
+│└────────────────┈ ⳹
+│       「 TIME 」
+│◦➛ Hari : %week
+│◦➛ Weton : %weton
+│◦➛ Tanggal : %date
+│◦➛ Waktu : %time
+│◦➛ Islam : %dateIslamic
+│◦➛ Runtime : %uptime 
+├──────────────────┈ ⳹
+│      「 INFO OWNER 」
+│ 𝚈𝚃 : https://youtu.be/_De5EgwBPM8
+│ 𝙸𝙶 :https://www.instagram.com/reteam.id/
+│ 𝙶𝙲 𝙱𝙾𝚃 : https://bit.ly/3zWEnWt
+╰━━━━━━━━━━━━━━━━━━━━┈ ❋ཻུ۪۪⸙	
 %readmore`.trimStart(),
   header: '╭─「 %category 」',
   body: '│ • %cmd %islimit %isPremium',
