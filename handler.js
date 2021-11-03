@@ -43,7 +43,7 @@ module.exports = {
           if (!('autolevelup' in user)) user.autolevelup = false
         } else global.db.data.users[m.sender] = {
           exp: 0,
-          limit: 10,
+          limit: 20,
           lastclaim: 0,
           registered: false,
           name: this.getName(m.sender),
@@ -72,15 +72,15 @@ module.exports = {
           if (!('viewonce' in chat)) chat.viewonce = false
         } else global.db.data.chats[m.chat] = {
           isBanned: false,
-          welcome: false,
-          detect: false,
+          welcome: true,
+          detect: true,
           sWelcome: '',
           sBye: '',
           sPromote: '',
           sDemote: '',
           delete: true,
-          antiLink: false,
-          viewonce: false,
+          antiLink: true,
+          viewonce: true,
         }
       } catch (e) {
         console.error(e)
@@ -321,7 +321,7 @@ module.exports = {
       if (opts['autoread']) await this.chatRead(m.chat).catch(() => { })
     }
   },
-  async participantsUpdate({ jid, participants, action }) {
+   async participantsUpdate({ jid, participants, action }) {
     let chat = global.db.data.chats[jid] || {}
     let text = ''
     switch (action) {
@@ -335,9 +335,9 @@ module.exports = {
               pp = await this.getProfilePicture(user)
             } catch (e) {
             } finally {
-              text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', this.getName(jid)).replace('@desc', groupMetadata.desc) :
-                (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
-              this.sendFile(jid, pp, 'pp.jpg', text, null, false, {
+              text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', this.getName(jid)).replace('@desc', groupMetadata.desc ? String.fromCharCode(8206).repeat(4001) + groupMetadata.desc : '') :
+                (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace(/@user/g, '@' + user.split('@')[0])
+              await this.send2ButtonLoc(jid, await (await fetch(fla + (action === 'add' ? 'welcome' : 'goodbye'))).buffer(), text, wm, action === 'add' ? 'Welcome' : 'Goodbye', 'ariffb', action === 'add' ? 'Off Welcome' : 'Off Goodbye', '.0 w', null, {
                 contextInfo: {
                   mentionedJid: [user]
                 }
